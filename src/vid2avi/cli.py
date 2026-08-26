@@ -8,7 +8,8 @@ def build_parser():
     parser = argparse.ArgumentParser(description="Convert video files.")
 
     _ = parser.add_argument(
-        "dir",
+        "-d",
+        "--dir",
         type=Path,
         default=".",
         help="Directory containing the video files.",
