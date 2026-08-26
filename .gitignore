@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+mts/
+test_videos/
+video_test/
