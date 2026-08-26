@@ -33,3 +33,21 @@ run_my_script
 
 
 Your current directory remains unchanged throughout.
+
+---
+
+Absolutely. In fact, that's probably the cleanest zsh version too:
+
+run_my_script() {
+    "/path/to/venv/bin/python" "/path/to/script.py"
+}
+
+
+It has the same behavior as the activation-less bash/fish versions:
+
+Uses the Python interpreter from the specified virtual environment.
+Leaves your current shell environment untouched.
+Leaves the current working directory unchanged.
+The script sees the directory you were in when you ran run_my_script as its cwd.
+The function returns Python's exit status naturally.
+
