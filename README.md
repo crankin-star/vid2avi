@@ -4,7 +4,7 @@ A python script for quickly converting entire folders of videos to .avi extensio
 
 ## installation
 
-- Install ffmpeg with preferred method
+- Install ffmpeg with preferred method. I would suggest running `winget install ffmpeg` in a terminal.
 - clone this repository with `gh clone https://github.com/crankin-star/vid2avi.git`
 - install with uv or pip `[uv] pip install -e .` into an environment or into the global scope for easy use.
 
