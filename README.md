@@ -33,13 +33,19 @@ Copy into your .bashrc file and replace `/path/to/venv` with your environment's 
 ### fish
 ```{fish}
 function vid2avi
+    # Change the paths below to the correct venv and script
     "/path/to/venv/bin/python" "/path/to/script.py" $argv
 end
+
+funcsave vid2avi
 ```
+
+Or save into `~/.config/fish/config.fish` after changing.
 
 ### PowerShell
 ```{PowerShell}
 function Run-MyScript {
+    # Change the paths below to the correct venv and script
     & "C:\path\to\venv\Scripts\python.exe" "C:\path\to\script.py" @args
 }
 ```
