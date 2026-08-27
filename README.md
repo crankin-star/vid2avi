@@ -15,7 +15,7 @@ A python script for quickly converting entire folders of videos to .avi extensio
 ### zsh
 
 ```{shell}
-run_my_script() {
+vid2avi() {
     "/path/to/venv/bin/python" "/path/to/script.py" "$@"
 }
 ```
