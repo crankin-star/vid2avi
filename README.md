@@ -13,24 +13,27 @@ A python script for quickly converting entire folders of videos to .avi extensio
 - Set up your terminal to access the script with a function for ease of use:
 
 ### zsh
+
 ```{shell}
 run_my_script() {
     "/path/to/venv/bin/python" "/path/to/script.py" "$@"
 }
 ```
 
-Copy into your .zshrc file and replace `/path/to/venv` with your environment's *absolute* path and `/path/to/script` with your script's *absolute* path
+Copy into your .zshrc file and replace `/path/to/venv` with your environment's _absolute_ path and `/path/to/script` with your script's _absolute_ path
 
 ### bash
+
 ```{bash}
 vid2avi() {
     "/path/to/venv/bin/python" "/path/to/script.py" "$@"
 }
 ```
 
-Copy into your .bashrc file and replace `/path/to/venv` with your environment's *absolute* path and `/path/to/script` with your script's *absolute* path
+Copy into your .bashrc file and replace `/path/to/venv` with your environment's _absolute_ path and `/path/to/script` with your script's _absolute_ path
 
 ### fish
+
 ```{fish}
 function vid2avi
     # Change the paths below to the correct venv and script
@@ -43,15 +46,15 @@ funcsave vid2avi
 Or save into `~/.config/fish/config.fish` after changing.
 
 ### PowerShell
+
 ```{PowerShell}
-function Run-MyScript {
+function vid2avi {
     # Change the paths below to the correct venv and script
     & "C:\path\to\venv\Scripts\python.exe" "C:\path\to\script.py" @args
 }
 ```
 
 Copy the run function into your `PROFILE` (access with `notepad $PROFILE`)
-
 
 You can then invoke them, for example, like:
 
