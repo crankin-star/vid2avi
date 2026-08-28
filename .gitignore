@@ -9,6 +9,9 @@ wheels/
 # Virtual environments
 .venv
 
+# testing dirs
 mts/
 test_videos/
 video_test/
+mp4/
+output/

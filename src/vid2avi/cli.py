@@ -28,6 +28,20 @@ def build_parser():
         default=[".mts", ".mp4"],
         help="File extensions to process (default: .mts .mp4).",
     )
+    _ = parser.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        default=None,
+        help="Output directory (default: .).",
+    )
+
+    _ = parser.add_argument(
+        "-r",
+        "--recursive",
+        action="store_true",
+        help="Recursively process subdirectories (default: False).",
+    )
 
     return parser
 
@@ -46,7 +60,18 @@ def main():
         format if format.startswith(".") else "." + format for format in args.formats
     }
 
-    files = [f for f in dir.iterdir() if f.is_file() and f.suffix.lower() in formats]
+    if args.recursive:
+        files = [
+            f for f in dir.rglob("*") if f.is_file() and (f.suffix.lower() in formats)
+        ]
+    else:
+        files = [
+            f for f in dir.iterdir() if f.is_file() and (f.suffix.lower() in formats)
+        ]
+        
+    output_dir = Path(args.output).absolute() if args.output is not None else None
+    if output_dir is not None and not output_dir.exists():
+        output_dir.mkdir(parents=True, exist_ok=True)
 
     if len(files) == 0:
         print(f"No files found with the extensions `{'`, `'.join(formats)}`")
@@ -54,16 +79,19 @@ def main():
     ffmpeg = FFmpeg().option("y")
 
     for file in files:
+        # use output dir if specified, else use original file's dir
+        output_dir = output_dir if output_dir is not None else file.parent.absolute()
         try:
-            fp = str(file.parent / file.stem) + ".avi"
+            fp = str(output_dir / file.stem) + ".avi"
             ff = ffmpeg.input(file).output(fp, {"codec:v": "mjpeg"})
             _ = ff.execute()
+            print(file, "converted to", fp)
         except FFmpegFileNotFound as e:
-            print("An exception has been occurred!")
+            print("An exception has occurred!")
             print("- Message from ffmpeg:", e.message)
             print("- Arguments to execute ffmpeg:", e.arguments)
         except FFmpegInvalidCommand as e:
-            print("An exception has been occurred!")
+            print("An exception has occurred!")
             print("- Message from ffmpeg:", e.message)
             print("- Arguments to execute ffmpeg:", e.arguments)
 
