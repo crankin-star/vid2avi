@@ -28,6 +28,7 @@ def build_parser():
         default=[".mts", ".mp4"],
         help="File extensions to process (default: .mts .mp4).",
     )
+    
     _ = parser.add_argument(
         "-o",
         "--output",
@@ -68,7 +69,7 @@ def main():
         files = [
             f for f in dir.iterdir() if f.is_file() and (f.suffix.lower() in formats)
         ]
-        
+
     output_dir = Path(args.output).absolute() if args.output is not None else None
     if output_dir is not None and not output_dir.exists():
         output_dir.mkdir(parents=True, exist_ok=True)
