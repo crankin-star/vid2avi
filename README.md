@@ -68,4 +68,6 @@ In the terminal window type `vid2avi`. If you want to include file extensions ot
 run_my_script --dir ./some-directory --format foo bar baz
 ```
 
-Everything after the function name gets passed through to Python, unchanged.
+## Todo!
+
+- Currently, the recursive option causes the directory structure to be lost in the output folder, especially when an output dir is specified. It'd be nice to keep the structure by default, with perhaps a different flag (`--recursive-flatten`, perhaps?) to perform the current behavior. can be done with `Path.relative_to()`)

@@ -71,8 +71,8 @@ def main():
         ]
 
     output_dir = Path(args.output).absolute() if args.output is not None else None
-    if output_dir is not None and not output_dir.exists():
-        output_dir.mkdir(parents=True, exist_ok=True)
+    # if output_dir is not None and not output_dir.exists():
+    #     output_dir.mkdir(parents=True, exist_ok=True)
 
     if len(files) == 0:
         print(f"No files found with the extensions `{'`, `'.join(formats)}`")
@@ -81,9 +81,17 @@ def main():
 
     for file in files:
         # use output dir if specified, else use original file's dir
-        output_dir = output_dir if output_dir is not None else file.parent.absolute()
+        if output_dir is not None:
+            # Preserve the directory structure relative to the input directory.
+            relative_path = file.relative_to(dir)
+            fp = output_dir / relative_path.with_suffix(".avi")
+        else:
+            # Save next to the original file.
+            fp = file.with_suffix(".avi")
+
+        fp.parent.mkdir(parents=True, exist_ok=True)
+        
         try:
-            fp = str(output_dir / file.stem) + ".avi"
             ff = ffmpeg.input(file).output(fp, {"codec:v": "mjpeg"})
             _ = ff.execute()
             print(file, "converted to", fp)
