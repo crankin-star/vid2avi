@@ -10,7 +10,11 @@ from ffmpeg import (  # pyright: ignore[reportMissingTypeStubs]
 
 def build_parser():
     parser = argparse.ArgumentParser(
-        description="Convert video file directories to avi."
+        description="Convert video file directories to avi.",
+        epilog="""
+In most cases, simply `vid2avi` will suffice and convert all .mp4 and .mts files in the folder.
+You may also want to use `vid2avi -r` to convert all subdirectories as well.
+""",
     )
 
     _ = parser.add_argument(
@@ -34,7 +38,7 @@ def build_parser():
         "--output",
         type=Path,
         default=None,
-        help="Output directory (default: .).",
+        help="Output directory (default: pwd).",
     )
 
     _ = parser.add_argument(
@@ -47,18 +51,17 @@ def build_parser():
     return parser
 
 
-def main():
-    parser = build_parser()
-
-    args = parser.parse_args()
+def main():  
+    args = build_parser().parse_args()
 
     if args.dir is None:
         dir = Path(".")
     else:
         dir = args.dir
-
+        
+    formats: list[str] = args.formats
     formats = {
-        format if format.startswith(".") else "." + format for format in args.formats
+        format.lower() if format.startswith(".") else "." + format.lower() for format in formats
     }
 
     if args.recursive:
