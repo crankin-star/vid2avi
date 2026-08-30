@@ -62,12 +62,33 @@ You can then invoke them, for example, like:
 
 Open the folder with videos to convert in file explorer or navigate into the folder with terminal. If in file explorer, right click in the folder and select "Open in Terminal".
 
-In the terminal window type `vid2avi`. If you want to include file extensions other than .mts and .mp4, use the `--formats` flag. If you want to convert videos in a subdirectory, use the `--dir` flag.
+In the terminal window type `vid2avi` along with any options:
 
-```{shell}
-run_my_script --dir ./some-directory --format foo bar baz
+- If you want to include file extensions other than .mts and .mp4, use the `--formats` flag.
+- If you want to convert videos in a subdirectory, use the `--dir` flag.
+- To specify an output directory, use `--output`
+  - if recursive, this imitates the target directory's structure
+- To search for files in subdirectories as well, use `--recursive`
+
+```{PowerShell}
+# Note: the backticks (`) just let us split commands across multiple lines in PowerShell
+run_my_script`
+    --dir ./some-directory`
+    --format foo bar baz`
+    --output ./other_directory`
+    --recursive
+```
+
+Or for short
+
+```{PowerShell}
+run_my_script`
+    -d ./some-directory`
+    -f foo bar baz`
+    -o ./other_directory`
+    -r
 ```
 
 ## Todo!
 
-- Currently, the recursive option causes the directory structure to be lost in the output folder, especially when an output dir is specified. It'd be nice to keep the structure by default, with perhaps a different flag (`--recursive-flatten`, perhaps?) to perform the current behavior. can be done with `Path.relative_to()`)
+- Nothing yet.
