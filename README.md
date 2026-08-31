@@ -16,6 +16,7 @@ A python script for quickly converting entire folders of videos to .avi extensio
 
 ```{shell}
 vid2avi() {
+    # Change the paths below to the correct venv and script
     "/path/to/venv/bin/python" "/path/to/script.py" "$@"
 }
 ```
@@ -26,6 +27,7 @@ Copy into your .zshrc file and replace `/path/to/venv` with your environment's _
 
 ```{bash}
 vid2avi() {
+    # Change the paths below to the correct venv and script
     "/path/to/venv/bin/python" "/path/to/script.py" "$@"
 }
 ```
@@ -55,8 +57,6 @@ function vid2avi {
 ```
 
 Copy the run function into your `PROFILE` (access with `notepad $PROFILE`)
-
-You can then invoke them, for example, like:
 
 ## intended use
 
