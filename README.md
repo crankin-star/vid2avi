@@ -4,7 +4,7 @@ A python script for quickly converting entire folders of videos to .avi extensio
 
 ## installation
 
-- Install ffmpeg with preferred method. I would suggest running `winget install ffmpeg` in a terminal.
+- Install ffmpeg with preferred method. I would suggest running `winget install ffmpeg` in a terminal on windows or `brew install ffmpeg` on Mac.
 - clone this repository with `gh clone https://github.com/crankin-star/vid2avi.git`
 - Make a local environment with uv or pip:
   - `uv venv; uv .\.venv\Scripts\activate`
@@ -72,7 +72,7 @@ In the terminal window type `vid2avi` along with any options:
 
 ```{PowerShell}
 # Note: the backticks (`) just let us split commands across multiple lines in PowerShell
-run_my_script`
+vid2avi`
     --dir ./some-directory`
     --format foo bar baz`
     --output ./other_directory`
@@ -82,7 +82,7 @@ run_my_script`
 Or for short
 
 ```{PowerShell}
-run_my_script`
+vid2avi`
     -d ./some-directory`
     -f foo bar baz`
     -o ./other_directory`
